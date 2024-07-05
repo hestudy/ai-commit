@@ -1,5 +1,9 @@
 {
-	"name": "ai-commit",
+	"name": "@hestudy/ai-commit",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hestudy/ai-commit.git"
+	},
 	"version": "0.0.1",
 	"license": "MIT",
 	"bin": "dist/cli.js",
