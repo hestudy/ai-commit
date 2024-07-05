@@ -21,7 +21,7 @@ const system = (language: string) => `
 2. 第一段内容是 commit 标题，根据约定式提交的 type 在开头插入 gitmoji
 3. 第二段内容是 diff 内容的理解总结，要求精准专业
 
-# 注意事项
+# 输出内容注意事项
 
 1. 不要漏失约定式提交的 type
 2. 标题和内容之间用空行分隔!!!
