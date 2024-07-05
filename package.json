@@ -13,7 +13,8 @@
 	},
 	"scripts": {
 		"build": "tsc",
-		"dev": "tsc --watch"
+		"dev": "tsc --watch",
+		"test": "prettier --check . && xo && ava"
 	},
 	"files": [
 		"dist"
