@@ -1,5 +1,5 @@
 {
-	"name": "ai-commit",
+	"name": "@hestudy/ai-commit",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/hestudy/ai-commit.git"
