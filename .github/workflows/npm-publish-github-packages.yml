@@ -1,7 +1,9 @@
 name: Publish package to GitHub Packages
 on:
-  release:
-    types: [published]
+  # schedule:
+  #   - cron: '45 11 * * *'
+  push:
+    branches: ['release']
 jobs:
   build:
     runs-on: ubuntu-latest
