@@ -1,16 +1,19 @@
 import {$} from 'execa';
-import {Text} from 'ink';
+import {Box, Text, useApp} from 'ink';
 import Spinner from 'ink-spinner';
 import OpenAI from 'openai';
 import React, {useEffect, useMemo, useState} from 'react';
 import ConfigForm from './forms/ConfigForm.js';
 import {useCOnfig} from './hooks/useConfig.js';
 import {prompts} from './prompts/index.js';
+import SelectInput from 'ink-select-input';
+import clipboard from 'clipboardy';
 
 export default function App() {
 	const {requireConfig, config} = useCOnfig();
 	const [loading, setLoading] = useState(false);
 	const [content, setContent] = useState<string | null>();
+	const app = useApp();
 
 	const openai = useMemo(() => {
 		return new OpenAI({
@@ -59,5 +62,27 @@ export default function App() {
 		return <Spinner></Spinner>;
 	}
 
-	return <Text>{content}</Text>;
+	return (
+		<Box flexDirection="column">
+			<Box>
+				<Text>{content}</Text>
+			</Box>
+			<Box>
+				<SelectInput
+					items={[
+						{
+							label: 'copy to clipboard',
+							value: 'copy',
+						},
+					]}
+					onSelect={item => {
+						if (item.value === 'copy' && content) {
+							clipboard.writeSync(content);
+							app.exit();
+						}
+					}}
+				></SelectInput>
+			</Box>
+		</Box>
+	);
 }
