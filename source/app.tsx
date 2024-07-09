@@ -16,6 +16,9 @@ export default function App() {
 	const app = useApp();
 
 	const openai = useMemo(() => {
+		if (!config.apiKey) {
+			return null;
+		}
 		return new OpenAI({
 			apiKey: config.apiKey,
 			baseURL: config.baseUrl,
@@ -31,7 +34,7 @@ export default function App() {
 		$`git diff --cached`
 			.then(async res => {
 				try {
-					const result = await openai.chat.completions.create({
+					const result = await openai?.chat.completions.create({
 						messages: [
 							{
 								role: 'system',
@@ -44,7 +47,7 @@ export default function App() {
 						],
 						model: 'deepseek-coder',
 					});
-					setContent(result.choices[0]?.message.content);
+					setContent(result?.choices[0]?.message.content);
 				} catch (e) {
 					console.error(e);
 				}
