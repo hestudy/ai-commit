@@ -14,12 +14,11 @@ $ npm install --global ai-commit
 $ ai-commit --help
 
   Usage
-    $ ai-commit
+	  $ ai-commit
 
-  Options
-    --name  Your name
+	Options
+		--option  -o   option setting
 
-  Examples
-    $ ai-commit --name=Jane
-    Hello, Jane
+	Examples
+	  $ ai-commit
 ```
