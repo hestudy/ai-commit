@@ -1,16 +1,15 @@
+import {Select, Spinner} from '@inkjs/ui';
+import clipboard from 'clipboardy';
 import {$} from 'execa';
 import {Box, Text, useApp} from 'ink';
-import Spinner from 'ink-spinner';
 import OpenAI from 'openai';
 import React, {useEffect, useMemo, useState} from 'react';
 import ConfigForm from './forms/ConfigForm.js';
-import {useCOnfig} from './hooks/useConfig.js';
+import {useConfig} from './hooks/useConfig.js';
 import {prompts} from './prompts/index.js';
-import SelectInput from 'ink-select-input';
-import clipboard from 'clipboardy';
 
 export default function App() {
-	const {requireConfig, config} = useCOnfig();
+	const {requireConfig, config} = useConfig();
 	const [loading, setLoading] = useState(false);
 	const [content, setContent] = useState<string | null>();
 	const app = useApp();
@@ -62,7 +61,7 @@ export default function App() {
 	}
 
 	if (loading) {
-		return <Spinner></Spinner>;
+		return <Spinner label="Loading"></Spinner>;
 	}
 
 	return (
@@ -71,20 +70,20 @@ export default function App() {
 				<Text>{content}</Text>
 			</Box>
 			<Box>
-				<SelectInput
-					items={[
+				<Select
+					options={[
 						{
 							label: 'copy to clipboard',
 							value: 'copy',
 						},
 					]}
-					onSelect={item => {
-						if (item.value === 'copy' && content) {
+					onChange={v => {
+						if (v === 'copy' && content) {
 							clipboard.writeSync(content);
 							app.exit();
 						}
 					}}
-				></SelectInput>
+				></Select>
 			</Box>
 		</Box>
 	);

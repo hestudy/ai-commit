@@ -2,7 +2,7 @@ import {useAtom} from 'jotai';
 import {useCallback, useMemo} from 'react';
 import {configAtom} from '../atoms/configAtom.js';
 
-export const useCOnfig = () => {
+export const useConfig = () => {
 	const [config, setConfig] = useAtom(configAtom);
 
 	const getKey = useCallback(() => {

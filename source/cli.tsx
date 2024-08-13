@@ -3,27 +3,32 @@ import {render} from 'ink';
 import meow from 'meow';
 import React from 'react';
 import App from './app.js';
+import Option from './option.js';
 
-meow(
+const cli = meow(
 	`
 	Usage
 	  $ ai-commit
 
 	Options
-		--name  Your name
+		--option  -o   option setting
 
 	Examples
-	  $ ai-commit --name=Jane
-	  Hello, Jane
+	  $ ai-commit
 `,
 	{
 		importMeta: import.meta,
 		flags: {
-			name: {
-				type: 'string',
+			option: {
+				type: 'boolean',
+				alias: 'o',
 			},
 		},
 	},
 );
 
-render(<App />);
+if (cli.flags.option) {
+	render(<Option />);
+} else {
+	render(<App />);
+}

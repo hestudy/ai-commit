@@ -4,7 +4,7 @@ import React from 'react';
 import {configAtom} from '../atoms/configAtom.js';
 import {DB} from '../utils/db.js';
 
-const ConfigForm = () => {
+const ConfigForm = (props: {onSubmit?: (v: DB) => void}) => {
 	const [config, setConfig] = useAtom(configAtom);
 
 	return (
@@ -38,6 +38,7 @@ const ConfigForm = () => {
 			}}
 			onSubmit={v => {
 				setConfig(v as DB);
+				props.onSubmit?.(v as DB);
 			}}
 		></Form>
 	);
